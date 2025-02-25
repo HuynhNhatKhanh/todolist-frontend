@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the frontend for the TodoList application, built using ReactJS and TailwindCSS. The application interacts with the backend API to manage tasks effectively.
+This is the frontend for the TodoList application, built with ReactJS and TailwindCSS. The application interacts with the backend API to manage tasks effectively, connecting to a backend service hosted on AWS EC2
 
 ## Features
 
