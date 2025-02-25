@@ -1,13 +1,15 @@
 {
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
-  "routes": [
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://localhost:8080/api/:path*"
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/index.html" }]
 }
