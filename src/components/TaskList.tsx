@@ -66,7 +66,7 @@ const TaskList = () => {
         <h2 className="text-xl sm:text-2xl font-bold text-black">Task List</h2>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-purple-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-purple-700 flex items-center text-sm sm:text-base"
+          className="!bg-purple-500 text-white px-4 py-2 rounded-lg shadow-md hover:!bg-purple-700 flex items-center text-sm sm:text-base"
         >
           Add Task
         </button>
@@ -92,7 +92,7 @@ const TaskList = () => {
             />
           ))
         ) : (
-          <h2 className="text-gray-500 text-center text-lg bg-white rounded-lg py-5">
+          <h2 className="text-gray-500 text-center text-lg !bg-white rounded-lg py-5">
             No record
           </h2>
         )}
