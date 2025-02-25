@@ -11,6 +11,8 @@ This is the frontend for the TodoList application, built with ReactJS and Tailwi
 - Mark tasks as completed (`PUT /tasks/{id}`)
 - Delete tasks (`DELETE /tasks/{id}`)
 - Responsive design for mobile and desktop
+- Deploy to Vercel
+- Connect to AWS E2C get APIs
 
 ## Technologies Used
 
