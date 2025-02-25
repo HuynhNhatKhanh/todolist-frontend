@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void>;
 }
 
 const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
@@ -11,7 +12,19 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
   onClose,
   onConfirm,
 }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   if (!isOpen) return null;
+
+  const handleDelete = async () => {
+    if (isDeleting) return;
+    setIsDeleting(true);
+    try {
+      await onConfirm();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-[2px] flex items-center justify-center z-50">
@@ -21,13 +34,26 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
         </h2>
         <div className="flex justify-center gap-4">
           <button
-            onClick={onConfirm}
-            className="bg-purple-600 hover:bg-purple-800 text-white px-6 py-2 rounded-lg font-semibold transition"
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className={`px-6 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-2 ${
+              isDeleting
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-purple-600 hover:bg-purple-800 text-white"
+            }`}
           >
-            Delete
+            {isDeleting ? (
+              <>
+                <AiOutlineLoading3Quarters className="animate-spin" />
+                Deleting...
+              </>
+            ) : (
+              "Delete"
+            )}
           </button>
           <button
             onClick={onClose}
+            disabled={isDeleting}
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold transition"
           >
             Cancel
